@@ -15,7 +15,7 @@ namespace DoubleManipulation
         {
             var convertStruct = new DoubleToLongStruct
             {
-                DoubleBitsRepresentation = number
+                DoubleBitsRepresentation = number,
             };
 
             long value = convertStruct.LongBitsRepresentation;
@@ -38,15 +38,17 @@ namespace DoubleManipulation
         [StructLayout(LayoutKind.Explicit)]
         private struct DoubleToLongStruct
         {
-            [FieldOffset(0)] private readonly long long64bits;
+            [FieldOffset(0)]
+            private readonly long long64bits;
 
-            [FieldOffset(0)] private double double64bits;
+            [FieldOffset(0)]
+            private double double64bits;
 
-            public long LongBitsRepresentation => long64bits;
+            public long LongBitsRepresentation => this.long64bits;
 
             public double DoubleBitsRepresentation
             {
-                set => double64bits = value;
+                set => this.double64bits = value;
             }
         }
     }
